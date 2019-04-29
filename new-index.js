@@ -15,13 +15,37 @@ function readAllDocs(nPath) {
 		});
 	});
 }
-// este metodo es para poder escribir un archivo, y en los parametros
-//  puedo ver el contenido que elija, recibe otro parametro (callback) una funcion
-// que ejecuta cuadno ha terminado el proceso de create archivo
 
-/*const os = require('os'); me muestra en consola 
-console.log(os.platform());
-console.log(os.release());
-console.log('free mem:', os.freemem);
-console.log('total mem:', os.totalmem);
-esto es para ver los datos de mi sistema operativo*/
+function validatePath(pathMd) {
+	const extension = path.extname(pathMd);
+	if (extension == '.md') {
+		console.log('true');
+		return true;
+	} else {
+		console.log('false');
+		return false;
+	}
+}
+
+function absolutePath(absolutelink) {
+	const absolute = path.resolve(absolutelink);
+	return absolute;
+}
+
+function readFileMd(pathMd) {
+	return new Promise((resolve, reject) => {
+		fs.readFile(pathMd, 'utf-8', (err, data) => {
+			if (err) {
+				reject(err);
+			} else {
+				resolve(data);
+			}
+		});
+	});
+}
+
+module.exports = {
+	validatePath,
+	absolutePath,
+	readFileMd
+};
