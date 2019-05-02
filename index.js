@@ -2,15 +2,15 @@ const fs = require('fs');
 const path = require('path');
 
 function validatePath(pathMd) {
-	const extension = path.extname(pathMd);
-	if (extension == '.md') {
+	const ext = path.extname(pathMd);
+	if (ext == '.md') {
 		console.log('true');
 		return true;
 	}
 }
 
-function absolutePath(absolutelink) {
-	const absolutePt = path.resolve(absolutelink);
+function absolutePath(linkAbsolute) {
+	const absolutePt = path.resolve(linkAbsolute);
 	return absolutePt;
 }
 
